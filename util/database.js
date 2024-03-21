@@ -6,3 +6,5 @@ const pool = mysql.createPool({
   database: "node_sql",
   password: "accessdenied123",
 });
+
+module.exports = pool.promise();
