@@ -37,8 +37,12 @@ exports.postAddProduct = (req, res, next) => {
     description,
     parseFloat(price)
   );
-  product.save();
-  res.redirect("/");
+  product
+    .save()
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postEditProduct = (req, res, next) => {
@@ -57,7 +61,7 @@ exports.postEditProduct = (req, res, next) => {
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.deleteById(prodId);
-  res.redirect('/admin/products');
+  res.redirect("/admin/products");
 };
 
 exports.getProducts = (req, res, next) => {
